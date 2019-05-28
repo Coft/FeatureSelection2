@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 namespace FeatureSelection.Web.Controllers
@@ -10,19 +7,11 @@ namespace FeatureSelection.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            var path = Server.MapPath("~/App_Data/train.csv");
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var orygin = System.IO.File.ReadAllLines(path);
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            var oryginCsv = orygin.Select(l => l.Split(';')).ToList();
 
             return View();
         }
